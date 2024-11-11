@@ -4,13 +4,13 @@
     <div class="container grid lg:grid-cols-4 gap-6 pt-4 pb-16 items-start relative">
         <!-- sidebar -->
         <div
-            class="col-span-1 bg-white px-4 pt-4 pb-6 shadow rounded overflow-hidden absolute lg:static left-4 top-16 z-10 w-72 lg:w-full lg:block">
+        id="category-div" class="col-span-1 bg-white px-4 pt-4 pb-6 shadow rounded overflow-hidden absolute lg:static left-4 top-16 z-10 w-72 lg:w-full lg:block">
             <div class="divide-gray-200 divide-y space-y-5 relative">
                 <!-- category filter -->
                 <div class="relative">
                     <div
-                        class="close-icon lg:hidden text-gray-400 hover:text-primary text-lg absolute right-0 top-0 cursor-pointer">
-                        <a><i class="fas fa-times"></i></a>
+                        class="lg:hidden text-gray-400 hover:text-primary text-lg absolute right-0 top-0 cursor-pointer">
+                        <a><i id="close-icon" class="fas fa-times"></i></a>
                     </div>
                     <h3 class="text-2xl text-primary mb-3 uppercase font-bold"><%= category %></h3>
                     <h3 class="text-xl text-gray-800 mb-3 uppercase font-medium">Categories</h3>
@@ -91,12 +91,13 @@
         </div>
         <!-- sidebar end -->
 
+
         <!-- products -->
         <div class="col-span-3">
             <!-- sorting -->
             <div class="mb-4 flex items-center">
                 <button 
-                    class="bg-primary border border-primary text-white px-10 py-3 font-medium rounded uppercase hover:bg-transparent hover:text-primary transition lg:hidden text-sm mr-3 focus:outline-none">
+                    id="filter-category" class="bg-primary border border-primary text-white px-10 py-3 font-medium rounded uppercase hover:bg-transparent hover:text-primary transition lg:hidden text-sm mr-3 focus:outline-none">
                     Filter
                 </button>
                 <select
@@ -120,139 +121,33 @@
                 <div class="group rounded bg-white shadow overflow-hidden">
                     <!-- product image -->
                     <div class="relative">
-                        <img src="/images/products/product4.jpg" class="w-full">
-                        <div
+                        <img src="/images/products/product8.jpg" class="w-full">
+                        <a href="/account/product/1"
                             class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
-                            <a href="view.html"
-                                class="text-white text-lg w-9 h-9 rounded-full bg-primary hover:bg-gray-800 transition flex items-center justify-center">
-                                <i class="fas fa-search"></i>
-                            </a>
-                            <a href="#"
-                                class="text-white text-lg w-9 h-9 rounded-full bg-primary hover:bg-gray-800 transition flex items-center justify-center">
-                                <i class="far fa-heart"></i>
-                            </a>
-                        </div>
+                        </a>
                     </div>
                     <!-- product image end -->
                     <!-- product content -->
                     <div class="pt-4 pb-3 px-4">
-                        <a href="view.html">
+                        <a href="/account/product/1">
                             <h4 class="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">
                                 Guyer chair
                             </h4>
-                        </a>
-                        <div class="flex items-baseline mb-1 space-x-2">
-                            <p class="text-xl text-primary font-roboto font-semibold">$45.00</p>
-                            <p class="text-sm text-gray-400 font-roboto line-through">$55.00</p>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="flex gap-1 text-sm text-yellow-400">
-                                <span:key="n"><i class="fas fa-star"></i></span>
-                                <span:key="n"><i class="fas fa-star"></i></span>
-                                <span:key="n"><i class="fas fa-star"></i></span>
-                                <span:key="n"><i class="fas fa-star"></i></span>
-                                <span:key="n"><i class="fas fa-star"></i></span>
+                            <div class="flex items-baseline mb-1 space-x-2">
+                                <p class="text-xl text-primary font-roboto font-semibold">₹45.00</p>
+                                <p class="text-sm text-gray-400 font-roboto line-through">₹55.00</p>
                             </div>
-                            <div class="text-xs text-gray-500 ml-3">(150)</div>
-                        </div>
-                    </div>
-                    <!-- product content end -->
-                    <!-- product button -->
-                    <a href="#"
-                        class="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition">
-                        Add to Cart
-                    </a>
-                    <!-- product button end -->
-                </div>
-                <!-- single product end -->
-                <!-- single product -->
-                <div class="group rounded bg-white shadow overflow-hidden">
-                    <!-- product image -->
-                    <div class="relative">
-                        <img src="/images/products/product9.jpg" class="w-full">
-                        <div
-                            class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
-                            <a href="view.html"
-                                class="text-white text-lg w-9 h-9 rounded-full bg-primary hover:bg-gray-800 transition flex items-center justify-center">
-                                <i class="fas fa-search"></i>
-                            </a>
-                            <a href="#"
-                                class="text-white text-lg w-9 h-9 rounded-full bg-primary hover:bg-gray-800 transition flex items-center justify-center">
-                                <i class="far fa-heart"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- product image end -->
-                    <!-- product content -->
-                    <div class="pt-4 pb-3 px-4">
-                        <a href="view.html">
-                            <h4 class="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">
-                                Guyer chair
-                            </h4>
-                        </a>
-                        <div class="flex items-baseline mb-1 space-x-2">
-                            <p class="text-xl text-primary font-roboto font-semibold">$45.00</p>
-                            <p class="text-sm text-gray-400 font-roboto line-through">$55.00</p>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="flex gap-1 text-sm text-yellow-400">
-                                <span:key="n"><i class="fas fa-star"></i></span>
-                                <span:key="n"><i class="fas fa-star"></i></span>
-                                <span:key="n"><i class="fas fa-star"></i></span>
-                                <span:key="n"><i class="fas fa-star"></i></span>
-                                <span:key="n"><i class="fas fa-star"></i></span>
+                            <div class="flex items-center">
+                                <div class="flex gap-1 text-sm text-yellow-400">
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                </div>
+                                <div class="text-xs text-gray-500 ml-3">(150)</div>
                             </div>
-                            <div class="text-xs text-gray-500 ml-3">(150)</div>
-                        </div>
-                    </div>
-                    <!-- product content end -->
-                    <!-- product button -->
-                    <a href="#"
-                        class="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition">
-                        Add to Cart
-                    </a>
-                    <!-- product button end -->
-                </div>
-                <!-- single product end -->
-                <!-- single product -->
-                <div class="group rounded bg-white shadow overflow-hidden">
-                    <!-- product image -->
-                    <div class="relative">
-                        <img src="/images/products/product1.jpg" class="w-full">
-                        <div
-                            class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
-                            <a href="view.html"
-                                class="text-white text-lg w-9 h-9 rounded-full bg-primary hover:bg-gray-800 transition flex items-center justify-center">
-                                <i class="fas fa-search"></i>
-                            </a>
-                            <a href="#"
-                                class="text-white text-lg w-9 h-9 rounded-full bg-primary hover:bg-gray-800 transition flex items-center justify-center">
-                                <i class="far fa-heart"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- product image end -->
-                    <!-- product content -->
-                    <div class="pt-4 pb-3 px-4">
-                        <a href="view.html">
-                            <h4 class="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">
-                                Guyer chair
-                            </h4>
                         </a>
-                        <div class="flex items-baseline mb-1 space-x-2">
-                            <p class="text-xl text-primary font-roboto font-semibold">$45.00</p>
-                            <p class="text-sm text-gray-400 font-roboto line-through">$55.00</p>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="flex gap-1 text-sm text-yellow-400">
-                                <span:key="n"><i class="fas fa-star"></i></span>
-                                <span:key="n"><i class="fas fa-star"></i></span>
-                                <span:key="n"><i class="fas fa-star"></i></span>
-                                <span:key="n"><i class="fas fa-star"></i></span>
-                                <span:key="n"><i class="fas fa-star"></i></span>
-                            </div>
-                            <div class="text-xs text-gray-500 ml-3">(150)</div>
-                        </div>
                     </div>
                     <!-- product content end -->
                     <!-- product button -->
@@ -268,40 +163,32 @@
                     <!-- product image -->
                     <div class="relative">
                         <img src="/images/products/product8.jpg" class="w-full">
-                        <div
+                        <a href="/account/product/1"
                             class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
-                            <a href="view.html"
-                                class="text-white text-lg w-9 h-9 rounded-full bg-primary hover:bg-gray-800 transition flex items-center justify-center">
-                                <i class="fas fa-search"></i>
-                            </a>
-                            <a href="#"
-                                class="text-white text-lg w-9 h-9 rounded-full bg-primary hover:bg-gray-800 transition flex items-center justify-center">
-                                <i class="far fa-heart"></i>
-                            </a>
-                        </div>
+                        </a>
                     </div>
                     <!-- product image end -->
                     <!-- product content -->
                     <div class="pt-4 pb-3 px-4">
-                        <a href="view.html">
+                        <a href="/account/product/1">
                             <h4 class="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">
                                 Guyer chair
                             </h4>
-                        </a>
-                        <div class="flex items-baseline mb-1 space-x-2">
-                            <p class="text-xl text-primary font-roboto font-semibold">$45.00</p>
-                            <p class="text-sm text-gray-400 font-roboto line-through">$55.00</p>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="flex gap-1 text-sm text-yellow-400">
-                                <span:key="n"><i class="fas fa-star"></i></span>
-                                <span:key="n"><i class="fas fa-star"></i></span>
-                                <span:key="n"><i class="fas fa-star"></i></span>
-                                <span:key="n"><i class="fas fa-star"></i></span>
-                                <span:key="n"><i class="fas fa-star"></i></span>
+                            <div class="flex items-baseline mb-1 space-x-2">
+                                <p class="text-xl text-primary font-roboto font-semibold">₹45.00</p>
+                                <p class="text-sm text-gray-400 font-roboto line-through">₹55.00</p>
                             </div>
-                            <div class="text-xs text-gray-500 ml-3">(150)</div>
-                        </div>
+                            <div class="flex items-center">
+                                <div class="flex gap-1 text-sm text-yellow-400">
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                </div>
+                                <div class="text-xs text-gray-500 ml-3">(150)</div>
+                            </div>
+                        </a>
                     </div>
                     <!-- product content end -->
                     <!-- product button -->
@@ -316,41 +203,33 @@
                 <div class="group rounded bg-white shadow overflow-hidden">
                     <!-- product image -->
                     <div class="relative">
-                        <img src="/images/products/product10.jpg" class="w-full">
-                        <div
+                        <img src="/images/products/product8.jpg" class="w-full">
+                        <a href="/account/product/1"
                             class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
-                            <a href="view.html"
-                                class="text-white text-lg w-9 h-9 rounded-full bg-primary hover:bg-gray-800 transition flex items-center justify-center">
-                                <i class="fas fa-search"></i>
-                            </a>
-                            <a href="#"
-                                class="text-white text-lg w-9 h-9 rounded-full bg-primary hover:bg-gray-800 transition flex items-center justify-center">
-                                <i class="far fa-heart"></i>
-                            </a>
-                        </div>
+                        </a>
                     </div>
                     <!-- product image end -->
                     <!-- product content -->
                     <div class="pt-4 pb-3 px-4">
-                        <a href="view.html">
+                        <a href="/account/product/1">
                             <h4 class="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">
                                 Guyer chair
                             </h4>
-                        </a>
-                        <div class="flex items-baseline mb-1 space-x-2">
-                            <p class="text-xl text-primary font-roboto font-semibold">$45.00</p>
-                            <p class="text-sm text-gray-400 font-roboto line-through">$55.00</p>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="flex gap-1 text-sm text-yellow-400">
-                                <span:key="n"><i class="fas fa-star"></i></span>
-                                <span:key="n"><i class="fas fa-star"></i></span>
-                                <span:key="n"><i class="fas fa-star"></i></span>
-                                <span:key="n"><i class="fas fa-star"></i></span>
-                                <span:key="n"><i class="fas fa-star"></i></span>
+                            <div class="flex items-baseline mb-1 space-x-2">
+                                <p class="text-xl text-primary font-roboto font-semibold">₹45.00</p>
+                                <p class="text-sm text-gray-400 font-roboto line-through">₹55.00</p>
                             </div>
-                            <div class="text-xs text-gray-500 ml-3">(150)</div>
-                        </div>
+                            <div class="flex items-center">
+                                <div class="flex gap-1 text-sm text-yellow-400">
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                </div>
+                                <div class="text-xs text-gray-500 ml-3">(150)</div>
+                            </div>
+                        </a>
                     </div>
                     <!-- product content end -->
                     <!-- product button -->
@@ -365,41 +244,33 @@
                 <div class="group rounded bg-white shadow overflow-hidden">
                     <!-- product image -->
                     <div class="relative">
-                        <img src="/images/products/product11.jpg" class="w-full">
-                        <div
+                        <img src="/images/products/product8.jpg" class="w-full">
+                        <a href="/account/product/1"
                             class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
-                            <a href="view.html"
-                                class="text-white text-lg w-9 h-9 rounded-full bg-primary hover:bg-gray-800 transition flex items-center justify-center">
-                                <i class="fas fa-search"></i>
-                            </a>
-                            <a href="#"
-                                class="text-white text-lg w-9 h-9 rounded-full bg-primary hover:bg-gray-800 transition flex items-center justify-center">
-                                <i class="far fa-heart"></i>
-                            </a>
-                        </div>
+                        </a>
                     </div>
                     <!-- product image end -->
                     <!-- product content -->
                     <div class="pt-4 pb-3 px-4">
-                        <a href="view.html">
+                        <a href="/account/product/1">
                             <h4 class="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">
                                 Guyer chair
                             </h4>
-                        </a>
-                        <div class="flex items-baseline mb-1 space-x-2">
-                            <p class="text-xl text-primary font-roboto font-semibold">$45.00</p>
-                            <p class="text-sm text-gray-400 font-roboto line-through">$55.00</p>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="flex gap-1 text-sm text-yellow-400">
-                                <span:key="n"><i class="fas fa-star"></i></span>
-                                <span:key="n"><i class="fas fa-star"></i></span>
-                                <span:key="n"><i class="fas fa-star"></i></span>
-                                <span:key="n"><i class="fas fa-star"></i></span>
-                                <span:key="n"><i class="fas fa-star"></i></span>
+                            <div class="flex items-baseline mb-1 space-x-2">
+                                <p class="text-xl text-primary font-roboto font-semibold">₹45.00</p>
+                                <p class="text-sm text-gray-400 font-roboto line-through">₹55.00</p>
                             </div>
-                            <div class="text-xs text-gray-500 ml-3">(150)</div>
-                        </div>
+                            <div class="flex items-center">
+                                <div class="flex gap-1 text-sm text-yellow-400">
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                </div>
+                                <div class="text-xs text-gray-500 ml-3">(150)</div>
+                            </div>
+                        </a>
                     </div>
                     <!-- product content end -->
                     <!-- product button -->
@@ -410,6 +281,1032 @@
                     <!-- product button end -->
                 </div>
                 <!-- single product end -->
+                <!-- single product -->
+                <div class="group rounded bg-white shadow overflow-hidden">
+                    <!-- product image -->
+                    <div class="relative">
+                        <img src="/images/products/product8.jpg" class="w-full">
+                        <a href="/account/product/1"
+                            class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
+                        </a>
+                    </div>
+                    <!-- product image end -->
+                    <!-- product content -->
+                    <div class="pt-4 pb-3 px-4">
+                        <a href="/account/product/1">
+                            <h4 class="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">
+                                Guyer chair
+                            </h4>
+                            <div class="flex items-baseline mb-1 space-x-2">
+                                <p class="text-xl text-primary font-roboto font-semibold">₹45.00</p>
+                                <p class="text-sm text-gray-400 font-roboto line-through">₹55.00</p>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="flex gap-1 text-sm text-yellow-400">
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                </div>
+                                <div class="text-xs text-gray-500 ml-3">(150)</div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- product content end -->
+                    <!-- product button -->
+                    <a href="#"
+                        class="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition">
+                        Add to Cart
+                    </a>
+                    <!-- product button end -->
+                </div>
+                <!-- single product end -->
+                <!-- single product -->
+                <div class="group rounded bg-white shadow overflow-hidden">
+                    <!-- product image -->
+                    <div class="relative">
+                        <img src="/images/products/product8.jpg" class="w-full">
+                        <a href="/account/product/1"
+                            class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
+                        </a>
+                    </div>
+                    <!-- product image end -->
+                    <!-- product content -->
+                    <div class="pt-4 pb-3 px-4">
+                        <a href="/account/product/1">
+                            <h4 class="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">
+                                Guyer chair
+                            </h4>
+                            <div class="flex items-baseline mb-1 space-x-2">
+                                <p class="text-xl text-primary font-roboto font-semibold">₹45.00</p>
+                                <p class="text-sm text-gray-400 font-roboto line-through">₹55.00</p>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="flex gap-1 text-sm text-yellow-400">
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                </div>
+                                <div class="text-xs text-gray-500 ml-3">(150)</div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- product content end -->
+                    <!-- product button -->
+                    <a href="#"
+                        class="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition">
+                        Add to Cart
+                    </a>
+                    <!-- product button end -->
+                </div>
+                <!-- single product end -->
+                <!-- single product -->
+                <div class="group rounded bg-white shadow overflow-hidden">
+                    <!-- product image -->
+                    <div class="relative">
+                        <img src="/images/products/product8.jpg" class="w-full">
+                        <a href="/account/product/1"
+                            class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
+                        </a>
+                    </div>
+                    <!-- product image end -->
+                    <!-- product content -->
+                    <div class="pt-4 pb-3 px-4">
+                        <a href="/account/product/1">
+                            <h4 class="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">
+                                Guyer chair
+                            </h4>
+                            <div class="flex items-baseline mb-1 space-x-2">
+                                <p class="text-xl text-primary font-roboto font-semibold">₹45.00</p>
+                                <p class="text-sm text-gray-400 font-roboto line-through">₹55.00</p>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="flex gap-1 text-sm text-yellow-400">
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                </div>
+                                <div class="text-xs text-gray-500 ml-3">(150)</div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- product content end -->
+                    <!-- product button -->
+                    <a href="#"
+                        class="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition">
+                        Add to Cart
+                    </a>
+                    <!-- product button end -->
+                </div>
+                <!-- single product end -->
+                <!-- single product -->
+                <div class="group rounded bg-white shadow overflow-hidden">
+                    <!-- product image -->
+                    <div class="relative">
+                        <img src="/images/products/product8.jpg" class="w-full">
+                        <a href="/account/product/1"
+                            class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
+                        </a>
+                    </div>
+                    <!-- product image end -->
+                    <!-- product content -->
+                    <div class="pt-4 pb-3 px-4">
+                        <a href="/account/product/1">
+                            <h4 class="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">
+                                Guyer chair
+                            </h4>
+                            <div class="flex items-baseline mb-1 space-x-2">
+                                <p class="text-xl text-primary font-roboto font-semibold">₹45.00</p>
+                                <p class="text-sm text-gray-400 font-roboto line-through">₹55.00</p>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="flex gap-1 text-sm text-yellow-400">
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                </div>
+                                <div class="text-xs text-gray-500 ml-3">(150)</div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- product content end -->
+                    <!-- product button -->
+                    <a href="#"
+                        class="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition">
+                        Add to Cart
+                    </a>
+                    <!-- product button end -->
+                </div>
+                <!-- single product end -->
+                <!-- single product -->
+                <div class="group rounded bg-white shadow overflow-hidden">
+                    <!-- product image -->
+                    <div class="relative">
+                        <img src="/images/products/product8.jpg" class="w-full">
+                        <a href="/account/product/1"
+                            class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
+                        </a>
+                    </div>
+                    <!-- product image end -->
+                    <!-- product content -->
+                    <div class="pt-4 pb-3 px-4">
+                        <a href="/account/product/1">
+                            <h4 class="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">
+                                Guyer chair
+                            </h4>
+                            <div class="flex items-baseline mb-1 space-x-2">
+                                <p class="text-xl text-primary font-roboto font-semibold">₹45.00</p>
+                                <p class="text-sm text-gray-400 font-roboto line-through">₹55.00</p>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="flex gap-1 text-sm text-yellow-400">
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                </div>
+                                <div class="text-xs text-gray-500 ml-3">(150)</div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- product content end -->
+                    <!-- product button -->
+                    <a href="#"
+                        class="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition">
+                        Add to Cart
+                    </a>
+                    <!-- product button end -->
+                </div>
+                <!-- single product end -->
+                <!-- single product -->
+                <div class="group rounded bg-white shadow overflow-hidden">
+                    <!-- product image -->
+                    <div class="relative">
+                        <img src="/images/products/product8.jpg" class="w-full">
+                        <a href="/account/product/1"
+                            class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
+                        </a>
+                    </div>
+                    <!-- product image end -->
+                    <!-- product content -->
+                    <div class="pt-4 pb-3 px-4">
+                        <a href="/account/product/1">
+                            <h4 class="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">
+                                Guyer chair
+                            </h4>
+                            <div class="flex items-baseline mb-1 space-x-2">
+                                <p class="text-xl text-primary font-roboto font-semibold">₹45.00</p>
+                                <p class="text-sm text-gray-400 font-roboto line-through">₹55.00</p>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="flex gap-1 text-sm text-yellow-400">
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                </div>
+                                <div class="text-xs text-gray-500 ml-3">(150)</div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- product content end -->
+                    <!-- product button -->
+                    <a href="#"
+                        class="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition">
+                        Add to Cart
+                    </a>
+                    <!-- product button end -->
+                </div>
+                <!-- single product end -->
+                <!-- single product -->
+                <div class="group rounded bg-white shadow overflow-hidden">
+                    <!-- product image -->
+                    <div class="relative">
+                        <img src="/images/products/product8.jpg" class="w-full">
+                        <a href="/account/product/1"
+                            class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
+                        </a>
+                    </div>
+                    <!-- product image end -->
+                    <!-- product content -->
+                    <div class="pt-4 pb-3 px-4">
+                        <a href="/account/product/1">
+                            <h4 class="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">
+                                Guyer chair
+                            </h4>
+                            <div class="flex items-baseline mb-1 space-x-2">
+                                <p class="text-xl text-primary font-roboto font-semibold">₹45.00</p>
+                                <p class="text-sm text-gray-400 font-roboto line-through">₹55.00</p>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="flex gap-1 text-sm text-yellow-400">
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                </div>
+                                <div class="text-xs text-gray-500 ml-3">(150)</div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- product content end -->
+                    <!-- product button -->
+                    <a href="#"
+                        class="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition">
+                        Add to Cart
+                    </a>
+                    <!-- product button end -->
+                </div>
+                <!-- single product end -->
+                <!-- single product -->
+                <div class="group rounded bg-white shadow overflow-hidden">
+                    <!-- product image -->
+                    <div class="relative">
+                        <img src="/images/products/product8.jpg" class="w-full">
+                        <a href="/account/product/1"
+                            class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
+                        </a>
+                    </div>
+                    <!-- product image end -->
+                    <!-- product content -->
+                    <div class="pt-4 pb-3 px-4">
+                        <a href="/account/product/1">
+                            <h4 class="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">
+                                Guyer chair
+                            </h4>
+                            <div class="flex items-baseline mb-1 space-x-2">
+                                <p class="text-xl text-primary font-roboto font-semibold">₹45.00</p>
+                                <p class="text-sm text-gray-400 font-roboto line-through">₹55.00</p>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="flex gap-1 text-sm text-yellow-400">
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                </div>
+                                <div class="text-xs text-gray-500 ml-3">(150)</div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- product content end -->
+                    <!-- product button -->
+                    <a href="#"
+                        class="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition">
+                        Add to Cart
+                    </a>
+                    <!-- product button end -->
+                </div>
+                <!-- single product end -->
+                <!-- single product -->
+                <div class="group rounded bg-white shadow overflow-hidden">
+                    <!-- product image -->
+                    <div class="relative">
+                        <img src="/images/products/product8.jpg" class="w-full">
+                        <a href="/account/product/1"
+                            class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
+                        </a>
+                    </div>
+                    <!-- product image end -->
+                    <!-- product content -->
+                    <div class="pt-4 pb-3 px-4">
+                        <a href="/account/product/1">
+                            <h4 class="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">
+                                Guyer chair
+                            </h4>
+                            <div class="flex items-baseline mb-1 space-x-2">
+                                <p class="text-xl text-primary font-roboto font-semibold">₹45.00</p>
+                                <p class="text-sm text-gray-400 font-roboto line-through">₹55.00</p>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="flex gap-1 text-sm text-yellow-400">
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                </div>
+                                <div class="text-xs text-gray-500 ml-3">(150)</div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- product content end -->
+                    <!-- product button -->
+                    <a href="#"
+                        class="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition">
+                        Add to Cart
+                    </a>
+                    <!-- product button end -->
+                </div>
+                <!-- single product end -->
+                <!-- single product -->
+                <div class="group rounded bg-white shadow overflow-hidden">
+                    <!-- product image -->
+                    <div class="relative">
+                        <img src="/images/products/product8.jpg" class="w-full">
+                        <a href="/account/product/1"
+                            class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
+                        </a>
+                    </div>
+                    <!-- product image end -->
+                    <!-- product content -->
+                    <div class="pt-4 pb-3 px-4">
+                        <a href="/account/product/1">
+                            <h4 class="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">
+                                Guyer chair
+                            </h4>
+                            <div class="flex items-baseline mb-1 space-x-2">
+                                <p class="text-xl text-primary font-roboto font-semibold">₹45.00</p>
+                                <p class="text-sm text-gray-400 font-roboto line-through">₹55.00</p>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="flex gap-1 text-sm text-yellow-400">
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                </div>
+                                <div class="text-xs text-gray-500 ml-3">(150)</div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- product content end -->
+                    <!-- product button -->
+                    <a href="#"
+                        class="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition">
+                        Add to Cart
+                    </a>
+                    <!-- product button end -->
+                </div>
+                <!-- single product end -->
+                <!-- single product -->
+                <div class="group rounded bg-white shadow overflow-hidden">
+                    <!-- product image -->
+                    <div class="relative">
+                        <img src="/images/products/product8.jpg" class="w-full">
+                        <a href="/account/product/1"
+                            class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
+                        </a>
+                    </div>
+                    <!-- product image end -->
+                    <!-- product content -->
+                    <div class="pt-4 pb-3 px-4">
+                        <a href="/account/product/1">
+                            <h4 class="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">
+                                Guyer chair
+                            </h4>
+                            <div class="flex items-baseline mb-1 space-x-2">
+                                <p class="text-xl text-primary font-roboto font-semibold">₹45.00</p>
+                                <p class="text-sm text-gray-400 font-roboto line-through">₹55.00</p>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="flex gap-1 text-sm text-yellow-400">
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                </div>
+                                <div class="text-xs text-gray-500 ml-3">(150)</div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- product content end -->
+                    <!-- product button -->
+                    <a href="#"
+                        class="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition">
+                        Add to Cart
+                    </a>
+                    <!-- product button end -->
+                </div>
+                <!-- single product end -->
+                <!-- single product -->
+                <div class="group rounded bg-white shadow overflow-hidden">
+                    <!-- product image -->
+                    <div class="relative">
+                        <img src="/images/products/product8.jpg" class="w-full">
+                        <a href="/account/product/1"
+                            class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
+                        </a>
+                    </div>
+                    <!-- product image end -->
+                    <!-- product content -->
+                    <div class="pt-4 pb-3 px-4">
+                        <a href="/account/product/1">
+                            <h4 class="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">
+                                Guyer chair
+                            </h4>
+                            <div class="flex items-baseline mb-1 space-x-2">
+                                <p class="text-xl text-primary font-roboto font-semibold">₹45.00</p>
+                                <p class="text-sm text-gray-400 font-roboto line-through">₹55.00</p>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="flex gap-1 text-sm text-yellow-400">
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                </div>
+                                <div class="text-xs text-gray-500 ml-3">(150)</div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- product content end -->
+                    <!-- product button -->
+                    <a href="#"
+                        class="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition">
+                        Add to Cart
+                    </a>
+                    <!-- product button end -->
+                </div>
+                <!-- single product end -->
+                <!-- single product -->
+                <div class="group rounded bg-white shadow overflow-hidden">
+                    <!-- product image -->
+                    <div class="relative">
+                        <img src="/images/products/product8.jpg" class="w-full">
+                        <a href="/account/product/1"
+                            class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
+                        </a>
+                    </div>
+                    <!-- product image end -->
+                    <!-- product content -->
+                    <div class="pt-4 pb-3 px-4">
+                        <a href="/account/product/1">
+                            <h4 class="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">
+                                Guyer chair
+                            </h4>
+                            <div class="flex items-baseline mb-1 space-x-2">
+                                <p class="text-xl text-primary font-roboto font-semibold">₹45.00</p>
+                                <p class="text-sm text-gray-400 font-roboto line-through">₹55.00</p>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="flex gap-1 text-sm text-yellow-400">
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                </div>
+                                <div class="text-xs text-gray-500 ml-3">(150)</div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- product content end -->
+                    <!-- product button -->
+                    <a href="#"
+                        class="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition">
+                        Add to Cart
+                    </a>
+                    <!-- product button end -->
+                </div>
+                <!-- single product end -->
+                <!-- single product -->
+                <div class="group rounded bg-white shadow overflow-hidden">
+                    <!-- product image -->
+                    <div class="relative">
+                        <img src="/images/products/product8.jpg" class="w-full">
+                        <a href="/account/product/1"
+                            class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
+                        </a>
+                    </div>
+                    <!-- product image end -->
+                    <!-- product content -->
+                    <div class="pt-4 pb-3 px-4">
+                        <a href="/account/product/1">
+                            <h4 class="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">
+                                Guyer chair
+                            </h4>
+                            <div class="flex items-baseline mb-1 space-x-2">
+                                <p class="text-xl text-primary font-roboto font-semibold">₹45.00</p>
+                                <p class="text-sm text-gray-400 font-roboto line-through">₹55.00</p>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="flex gap-1 text-sm text-yellow-400">
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                </div>
+                                <div class="text-xs text-gray-500 ml-3">(150)</div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- product content end -->
+                    <!-- product button -->
+                    <a href="#"
+                        class="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition">
+                        Add to Cart
+                    </a>
+                    <!-- product button end -->
+                </div>
+                <!-- single product end -->
+                <!-- single product -->
+                <div class="group rounded bg-white shadow overflow-hidden">
+                    <!-- product image -->
+                    <div class="relative">
+                        <img src="/images/products/product8.jpg" class="w-full">
+                        <a href="/account/product/1"
+                            class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
+                        </a>
+                    </div>
+                    <!-- product image end -->
+                    <!-- product content -->
+                    <div class="pt-4 pb-3 px-4">
+                        <a href="/account/product/1">
+                            <h4 class="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">
+                                Guyer chair
+                            </h4>
+                            <div class="flex items-baseline mb-1 space-x-2">
+                                <p class="text-xl text-primary font-roboto font-semibold">₹45.00</p>
+                                <p class="text-sm text-gray-400 font-roboto line-through">₹55.00</p>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="flex gap-1 text-sm text-yellow-400">
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                </div>
+                                <div class="text-xs text-gray-500 ml-3">(150)</div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- product content end -->
+                    <!-- product button -->
+                    <a href="#"
+                        class="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition">
+                        Add to Cart
+                    </a>
+                    <!-- product button end -->
+                </div>
+                <!-- single product end -->
+                <!-- single product -->
+                <div class="group rounded bg-white shadow overflow-hidden">
+                    <!-- product image -->
+                    <div class="relative">
+                        <img src="/images/products/product8.jpg" class="w-full">
+                        <a href="/account/product/1"
+                            class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
+                        </a>
+                    </div>
+                    <!-- product image end -->
+                    <!-- product content -->
+                    <div class="pt-4 pb-3 px-4">
+                        <a href="/account/product/1">
+                            <h4 class="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">
+                                Guyer chair
+                            </h4>
+                            <div class="flex items-baseline mb-1 space-x-2">
+                                <p class="text-xl text-primary font-roboto font-semibold">₹45.00</p>
+                                <p class="text-sm text-gray-400 font-roboto line-through">₹55.00</p>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="flex gap-1 text-sm text-yellow-400">
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                </div>
+                                <div class="text-xs text-gray-500 ml-3">(150)</div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- product content end -->
+                    <!-- product button -->
+                    <a href="#"
+                        class="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition">
+                        Add to Cart
+                    </a>
+                    <!-- product button end -->
+                </div>
+                <!-- single product end -->
+                <!-- single product -->
+                <div class="group rounded bg-white shadow overflow-hidden">
+                    <!-- product image -->
+                    <div class="relative">
+                        <img src="/images/products/product8.jpg" class="w-full">
+                        <a href="/account/product/1"
+                            class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
+                        </a>
+                    </div>
+                    <!-- product image end -->
+                    <!-- product content -->
+                    <div class="pt-4 pb-3 px-4">
+                        <a href="/account/product/1">
+                            <h4 class="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">
+                                Guyer chair
+                            </h4>
+                            <div class="flex items-baseline mb-1 space-x-2">
+                                <p class="text-xl text-primary font-roboto font-semibold">₹45.00</p>
+                                <p class="text-sm text-gray-400 font-roboto line-through">₹55.00</p>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="flex gap-1 text-sm text-yellow-400">
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                </div>
+                                <div class="text-xs text-gray-500 ml-3">(150)</div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- product content end -->
+                    <!-- product button -->
+                    <a href="#"
+                        class="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition">
+                        Add to Cart
+                    </a>
+                    <!-- product button end -->
+                </div>
+                <!-- single product end -->
+                <!-- single product -->
+                <div class="group rounded bg-white shadow overflow-hidden">
+                    <!-- product image -->
+                    <div class="relative">
+                        <img src="/images/products/product8.jpg" class="w-full">
+                        <a href="/account/product/1"
+                            class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
+                        </a>
+                    </div>
+                    <!-- product image end -->
+                    <!-- product content -->
+                    <div class="pt-4 pb-3 px-4">
+                        <a href="/account/product/1">
+                            <h4 class="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">
+                                Guyer chair
+                            </h4>
+                            <div class="flex items-baseline mb-1 space-x-2">
+                                <p class="text-xl text-primary font-roboto font-semibold">₹45.00</p>
+                                <p class="text-sm text-gray-400 font-roboto line-through">₹55.00</p>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="flex gap-1 text-sm text-yellow-400">
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                </div>
+                                <div class="text-xs text-gray-500 ml-3">(150)</div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- product content end -->
+                    <!-- product button -->
+                    <a href="#"
+                        class="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition">
+                        Add to Cart
+                    </a>
+                    <!-- product button end -->
+                </div>
+                <!-- single product end -->
+                <!-- single product -->
+                <div class="group rounded bg-white shadow overflow-hidden">
+                    <!-- product image -->
+                    <div class="relative">
+                        <img src="/images/products/product8.jpg" class="w-full">
+                        <a href="/account/product/1"
+                            class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
+                        </a>
+                    </div>
+                    <!-- product image end -->
+                    <!-- product content -->
+                    <div class="pt-4 pb-3 px-4">
+                        <a href="/account/product/1">
+                            <h4 class="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">
+                                Guyer chair
+                            </h4>
+                            <div class="flex items-baseline mb-1 space-x-2">
+                                <p class="text-xl text-primary font-roboto font-semibold">₹45.00</p>
+                                <p class="text-sm text-gray-400 font-roboto line-through">₹55.00</p>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="flex gap-1 text-sm text-yellow-400">
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                </div>
+                                <div class="text-xs text-gray-500 ml-3">(150)</div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- product content end -->
+                    <!-- product button -->
+                    <a href="#"
+                        class="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition">
+                        Add to Cart
+                    </a>
+                    <!-- product button end -->
+                </div>
+                <!-- single product end -->
+                <!-- single product -->
+                <div class="group rounded bg-white shadow overflow-hidden">
+                    <!-- product image -->
+                    <div class="relative">
+                        <img src="/images/products/product8.jpg" class="w-full">
+                        <a href="/account/product/1"
+                            class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
+                        </a>
+                    </div>
+                    <!-- product image end -->
+                    <!-- product content -->
+                    <div class="pt-4 pb-3 px-4">
+                        <a href="/account/product/1">
+                            <h4 class="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">
+                                Guyer chair
+                            </h4>
+                            <div class="flex items-baseline mb-1 space-x-2">
+                                <p class="text-xl text-primary font-roboto font-semibold">₹45.00</p>
+                                <p class="text-sm text-gray-400 font-roboto line-through">₹55.00</p>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="flex gap-1 text-sm text-yellow-400">
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                </div>
+                                <div class="text-xs text-gray-500 ml-3">(150)</div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- product content end -->
+                    <!-- product button -->
+                    <a href="#"
+                        class="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition">
+                        Add to Cart
+                    </a>
+                    <!-- product button end -->
+                </div>
+                <!-- single product end -->
+                <!-- single product -->
+                <div class="group rounded bg-white shadow overflow-hidden">
+                    <!-- product image -->
+                    <div class="relative">
+                        <img src="/images/products/product8.jpg" class="w-full">
+                        <a href="/account/product/1"
+                            class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
+                        </a>
+                    </div>
+                    <!-- product image end -->
+                    <!-- product content -->
+                    <div class="pt-4 pb-3 px-4">
+                        <a href="/account/product/1">
+                            <h4 class="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">
+                                Guyer chair
+                            </h4>
+                            <div class="flex items-baseline mb-1 space-x-2">
+                                <p class="text-xl text-primary font-roboto font-semibold">₹45.00</p>
+                                <p class="text-sm text-gray-400 font-roboto line-through">₹55.00</p>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="flex gap-1 text-sm text-yellow-400">
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                </div>
+                                <div class="text-xs text-gray-500 ml-3">(150)</div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- product content end -->
+                    <!-- product button -->
+                    <a href="#"
+                        class="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition">
+                        Add to Cart
+                    </a>
+                    <!-- product button end -->
+                </div>
+                <!-- single product end -->
+                <!-- single product -->
+                <div class="group rounded bg-white shadow overflow-hidden">
+                    <!-- product image -->
+                    <div class="relative">
+                        <img src="/images/products/product8.jpg" class="w-full">
+                        <a href="/account/product/1"
+                            class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
+                        </a>
+                    </div>
+                    <!-- product image end -->
+                    <!-- product content -->
+                    <div class="pt-4 pb-3 px-4">
+                        <a href="/account/product/1">
+                            <h4 class="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">
+                                Guyer chair
+                            </h4>
+                            <div class="flex items-baseline mb-1 space-x-2">
+                                <p class="text-xl text-primary font-roboto font-semibold">₹45.00</p>
+                                <p class="text-sm text-gray-400 font-roboto line-through">₹55.00</p>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="flex gap-1 text-sm text-yellow-400">
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                </div>
+                                <div class="text-xs text-gray-500 ml-3">(150)</div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- product content end -->
+                    <!-- product button -->
+                    <a href="#"
+                        class="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition">
+                        Add to Cart
+                    </a>
+                    <!-- product button end -->
+                </div>
+                <!-- single product end -->
+                <!-- single product -->
+                <div class="group rounded bg-white shadow overflow-hidden">
+                    <!-- product image -->
+                    <div class="relative">
+                        <img src="/images/products/product8.jpg" class="w-full">
+                        <a href="/account/product/1"
+                            class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
+                        </a>
+                    </div>
+                    <!-- product image end -->
+                    <!-- product content -->
+                    <div class="pt-4 pb-3 px-4">
+                        <a href="/account/product/1">
+                            <h4 class="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">
+                                Guyer chair
+                            </h4>
+                            <div class="flex items-baseline mb-1 space-x-2">
+                                <p class="text-xl text-primary font-roboto font-semibold">₹45.00</p>
+                                <p class="text-sm text-gray-400 font-roboto line-through">₹55.00</p>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="flex gap-1 text-sm text-yellow-400">
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                </div>
+                                <div class="text-xs text-gray-500 ml-3">(150)</div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- product content end -->
+                    <!-- product button -->
+                    <a href="#"
+                        class="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition">
+                        Add to Cart
+                    </a>
+                    <!-- product button end -->
+                </div>
+                <!-- single product end -->
+                <!-- single product -->
+                <div class="group rounded bg-white shadow overflow-hidden">
+                    <!-- product image -->
+                    <div class="relative">
+                        <img src="/images/products/product8.jpg" class="w-full">
+                        <a href="/account/product/1"
+                            class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
+                        </a>
+                    </div>
+                    <!-- product image end -->
+                    <!-- product content -->
+                    <div class="pt-4 pb-3 px-4">
+                        <a href="/account/product/1">
+                            <h4 class="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">
+                                Guyer chair
+                            </h4>
+                            <div class="flex items-baseline mb-1 space-x-2">
+                                <p class="text-xl text-primary font-roboto font-semibold">₹45.00</p>
+                                <p class="text-sm text-gray-400 font-roboto line-through">₹55.00</p>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="flex gap-1 text-sm text-yellow-400">
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                </div>
+                                <div class="text-xs text-gray-500 ml-3">(150)</div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- product content end -->
+                    <!-- product button -->
+                    <a href="#"
+                        class="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition">
+                        Add to Cart
+                    </a>
+                    <!-- product button end -->
+                </div>
+                <!-- single product end -->
+                <!-- single product -->
+                <div class="group rounded bg-white shadow overflow-hidden">
+                    <!-- product image -->
+                    <div class="relative">
+                        <img src="/images/products/product8.jpg" class="w-full">
+                        <a href="/account/product/1"
+                            class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
+                        </a>
+                    </div>
+                    <!-- product image end -->
+                    <!-- product content -->
+                    <div class="pt-4 pb-3 px-4">
+                        <a href="/account/product/1">
+                            <h4 class="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">
+                                Guyer chair
+                            </h4>
+                            <div class="flex items-baseline mb-1 space-x-2">
+                                <p class="text-xl text-primary font-roboto font-semibold">₹45.00</p>
+                                <p class="text-sm text-gray-400 font-roboto line-through">₹55.00</p>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="flex gap-1 text-sm text-yellow-400">
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                </div>
+                                <div class="text-xs text-gray-500 ml-3">(150)</div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- product content end -->
+                    <!-- product button -->
+                    <a href="#"
+                        class="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition">
+                        Add to Cart
+                    </a>
+                    <!-- product button end -->
+                </div>
+                <!-- single product end -->
+
             </div>
             <!-- product wrapper end -->
         </div>
