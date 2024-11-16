@@ -4,6 +4,8 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const path = require('path');
 const flash = require("connect-flash");
+const userRoute = require("./routes/user");
+const productsRoute = require("./routes/products");
 const accountRoute = require("./routes/account");
 
 app.use(express.json());
@@ -17,7 +19,9 @@ app.get("/", (req,res)=>{
     res.render("index");
 })
 
-app.use("/account", accountRoute)
+app.use("/user", userRoute);
+app.use("/products", productsRoute);
+app.use("/account", accountRoute);
 
 app.listen(PORT, ()=>{
     console.log(`Server running on http://localhost:${PORT}`);
