@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
+const { authTokenMiddleware } = require("../middleware");
 
-router.get("/", (req,res)=>{
+router.get("/", authTokenMiddleware, (req,res)=>{
     res.render("account");
 })
 
