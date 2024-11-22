@@ -29,7 +29,7 @@ const createToken = (payload) => jwt.sign(payload, JWT_SECRET, { expiresIn: "1h"
 // 1. Signup
 router.post("/signup", async (req, res) => {
     const { username, email, password } = req.body;
-    console.log(req.body);
+    // console.log(req.body);
     try {
       const hashedPassword = await bcrypt.hash(password, 10);
       const newUser = await User.create({ username, email, password: hashedPassword });

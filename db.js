@@ -25,12 +25,8 @@ const userSchema = new mongoose.Schema({
     },
     cart: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: "product",
+        ref: "Product",
     }],
-    orders: {
-        type: Array,
-        default: []
-    },
     role: { type: String, enum: ['user', 'admin'], default: 'user' },
     isVerified: { type: Boolean, default: false },
     googleId: String,
@@ -41,7 +37,7 @@ const productSchema = new mongoose.Schema({
     rating: { type: Number, min: 0, max: 5, default: 0 },
     category: {
       type: String,
-      enum: ['Clothing', 'Gold', 'Diamond', 'Coming Soon'],
+      enum: ['clothing', 'gold', 'diamond', 'coming soon'],
       required: true
     },
     subCategory: {
@@ -50,10 +46,10 @@ const productSchema = new mongoose.Schema({
       validate: {
         validator: function (value) {
           const validSubCategories = {
-            Clothing: ['Saree', 'Suit'],
-            Gold: [],
-            Diamond: [],
-            'Coming Soon': []
+            clothing: ['saree', 'suit'],
+            gold: [],
+            diamond: [],
+            'coming soon': []
           };
   
           if (this.category in validSubCategories) {
