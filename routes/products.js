@@ -33,11 +33,10 @@ router.get("/shop", async (req, res) => {
     }
 });
 
-
-router.get("/product/:id", (req,res)=>{
-    // const id = req.params.id;
-    // const product = await product.findOne({_id: id});
-    res.render("product");
+router.get("/product/:id", async (req,res)=>{
+    const id = req.params.id;
+    const product = await Product.findOne({_id: id});
+    res.render("product", {product});
 })
 
 router.get("/cart", authTokenMiddleware, async (req,res)=>{
@@ -75,14 +74,14 @@ router.get('/addtocart/:productid', authTokenMiddleware, async (req, res) => {
 router.post("/create", async (req,res)=>{
     try{
         const newProduct = new Product({
-            title: "Festive Yellow Saree",
+            title: "Casual Black Suit",
             category: "clothing",
-            subCategory: "saree",
-            price: 1299,
-            size: ["M", "L", "XL"],
-            quantity: 30,
-            description: "A vibrant yellow saree perfect for festive occasions.",
-            images: ["yellow_saree1.jpg", "yellow_saree2.jpg"],
+            subCategory: "suit",
+            price: 1999,
+            size: ["S", "M", "L", "XL"],
+            quantity: 18,
+            description: "A stylish casual black suit perfect for parties and outings.",
+            images: ["black_suit1.jpg", "black_suit2.jpg", "black_suit3.jpg"],
         });
           const savedProduct = await newProduct.save();
           res.status(201).json({

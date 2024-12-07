@@ -1,8 +1,9 @@
 require('dotenv').config(); 
 const mongoose = require("mongoose");
 
-mongoose.connect(process.env.MONGO_URL)
-// .connect('mongodb://127.0.0.1:27017/e-commerce-project')
+mongoose
+.connect(process.env.MONGO_URL)
+// .connect('mongodb://127.0.0.1:27017/XYZ-Something');
 .then(function(){
     console.log("Connected to MongoDB");
 })

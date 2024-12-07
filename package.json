@@ -4,8 +4,7 @@
   "main": "app.js",
   "scripts": {
     "start": "npm run build:css && node index.js",
-    "dev": "npm run build:css && nodemon index.js",
-    "build:css": "npx tailwindcss -i ./src/input.css -o ./public/stylesheets/output.css",
+    "dev": "npx tailwindcss -i ./src/input.css -o ./public/stylesheets/output.css && nodemon index.js",
     "dev:css": "npx tailwindcss -i ./src/input.css -o ./public/stylesheets/output.css --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

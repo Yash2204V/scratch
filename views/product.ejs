@@ -28,7 +28,7 @@
         <!-- product image end -->
         <!-- product content -->
         <div>
-            <h2 class="md:text-3xl text-2xl font-medium uppercase mb-2">Italian L Shape Sofa</h2>
+            <h2 class="md:text-3xl text-2xl font-medium uppercase mb-2"><%= product.title %></h2>
             <div class="flex items-center mb-4">
                 <div class="flex gap-1 text-sm text-yellow-400">
                     <span><i class="fas fa-star"></i></span>
@@ -37,7 +37,7 @@
                     <span><i class="fas fa-star"></i></span>
                     <span><i class="fas fa-star"></i></span>
                 </div>
-                <div class="text-xs text-gray-500 ml-3">(150 Reviews)</div>
+                <div class="text-xs text-gray-500 ml-3">(<%= product.review %> Reviews)</div>
             </div>
             <div class="space-y-2">
                 <p class="text-gray-800 font-semibold space-x-2">
@@ -46,7 +46,7 @@
                 </p>
                 <p class="space-x-2">
                     <span class="text-gray-800 font-semibold">Brand: </span>
-                    <span class="text-gray-600">Apex</span>
+                    <span class="text-gray-600"><%= product.brand %></span>
                 </p>
                 <p class="space-x-2">
                     <span class="text-gray-800 font-semibold">Category: </span>
@@ -54,66 +54,31 @@
                 </p>
                 <p class="space-x-2">
                     <span class="text-gray-800 font-semibold">SKU: </span>
-                    <span class="text-gray-600">BE45VGRT</span>
+                    <span class="text-gray-600">Model No.</span>
                 </p>
             </div>
             <div class="mt-4 flex items-baseline gap-3">
-                <span class="text-primary font-semibold text-xl">₹450.00</span>
-                <span class="text-gray-500 text-base line-through">₹500.00</span>
+                <span class="text-primary font-semibold text-xl">₹<%= product.price %></span>
+                <span class="text-gray-500 text-base line-through">₹<%= product.price + 10 %></span>
             </div>
             <p class="mt-4 text-gray-600">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim exercitationem quaerat excepturi
-                labore blanditiis
+                <%= product.description %>
             </p>
             <!-- size -->
             <div class="mt-4">
                 <h3 class="text-base text-gray-800 mb-1">Size</h3>
                 <div class="flex items-center gap-2">
+                    <% product.size.forEach(function(size){ %>
                     <!-- single size -->
                     <div class="size-selector">
                         <input type="radio" name="size" class="hidden" id="size-xs">
                         <label for="size-xs"
                             class="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600">
-                            XS
+                            <%= size %>
                         </label>
                     </div>
                     <!-- single size end -->
-                    <!-- single size -->
-                    <div class="size-selector">
-                        <input type="radio" name="size" class="hidden" id="size-s">
-                        <label for="size-s"
-                            class="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600">
-                            S
-                        </label>
-                    </div>
-                    <!-- single size end -->
-                    <!-- single size -->
-                    <div class="size-selector">
-                        <input type="radio" name="size" class="hidden" id="size-m" checked>
-                        <label for="size-m"
-                            class="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600">
-                            M
-                        </label>
-                    </div>
-                    <!-- single size end -->
-                    <!-- single size -->
-                    <div class="size-selector">
-                        <input type="radio" name="size" class="hidden" id="size-l">
-                        <label for="size-l"
-                            class="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600">
-                            L
-                        </label>
-                    </div>
-                    <!-- single size end -->
-                    <!-- single size -->
-                    <div class="size-selector">
-                        <input type="radio" name="size" class="hidden" id="size-xl">
-                        <label for="size-xl"
-                            class="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600">
-                            XL
-                        </label>
-                    </div>
-                    <!-- single size end -->
+                     <% }) %>
                 </div>
             </div>
             <!-- size end -->
@@ -152,15 +117,19 @@
             <div class="mt-4">
                 <h3 class="text-base text-gray-800 mb-1">Quantity</h3>
                 <div class="flex border border-gray-300 text-gray-600 divide-x divide-gray-300 w-max">
-                    <div class="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none">-</div>
-                    <div class="h-8 w-10 flex items-center justify-center">4</div>
-                    <div class="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none">+</div>
+                    <div class="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none" onclick="()=>{
+                        `<% product.quantity-=1%>`
+                    }">-</div>
+                    <div class="h-8 w-10 flex items-center justify-center">1</div>
+                    <div class="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none" onclick="()=>{
+                        `<% product.quantity+=1%>`
+                    }">+</div>
                 </div>
             </div>
             <!-- color end -->
             <!-- add to cart button -->
             <div class="flex gap-3 border-b border-gray-200 pb-5 mt-6">
-                <a href="#" class="bg-primary border border-primary text-white px-8 py-2 font-medium rounded uppercase 
+                <a href="/products/addtocart/<%= product._id %>" class="bg-primary border border-primary text-white px-8 py-2 font-medium rounded uppercase 
                     hover:bg-transparent hover:text-primary transition text-sm flex items-center">
                     <span class="mr-2"><i class="fas fa-shopping-bag"></i></span> Add to cart
                 </a>
