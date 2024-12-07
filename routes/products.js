@@ -4,55 +4,76 @@ const { Product, User } = require("../db");
 const { authTokenMiddleware } = require("../middleware");
 
 router.get("/shop", async (req, res) => {
+    const page = parseInt(req.query.page) || 1; // Default to page 1
+    const limit = parseInt(req.query.limit) || 30; // Default to 30 products per page
+    const skip = (page - 1) * limit;
+// --------------------------------------------------------------------------
     try {
-        const error = req.flash('error') || [];  
-        const success = req.flash('success') || [];
-        const { sort, category } = req.query; // Fetch sorting option and category filter from query params
+        const error = req.flash("error") || [];
+        const success = req.flash("success") || [];
+        const { sort, category } = req.query; 
         
-        // Fetch products from the database based on category (if specified)
-        const products = category 
-            ? await Product.find({'categories.0': category })
-            : await Product.find();
-
-        // Sort the products
+// --------------------------------------------------------------------------
+    // Pagination!
+        const products = category
+            ? await Product.find({ "categories.0": category })
+            : await Product.find()
+            .skip(skip)
+            .limit(limit)
+            .sort({ createdAt: -1 }); // You can sort based on other criteria
+    
+            const totalProducts = await Product.countDocuments();
+            const totalPages = Math.ceil(totalProducts / limit);
+// ------------------------------------------------------------------------
         let sortedProducts = [...products];
         if (sort === "low-high") {
             sortedProducts.sort((a, b) => a.price - b.price);
         } else if (sort === "high-low") {
             sortedProducts.sort((a, b) => b.price - a.price);
         } else if (sort === "latest") {
-            sortedProducts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); // Assumes `createdAt` field exists
+            sortedProducts.sort(
+                (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+            ); 
         }
 
-        // Extract unique subcategories from the products
-        // const categories = [...new Set(products.map((prod) => prod.categories))].filter(Boolean);
-        const categories = [...new Set(products.map(prod => JSON.stringify(prod.categories)))].map(item => JSON.parse(item));
+        const categories = [
+            ...new Set(products.map((prod) => JSON.stringify(prod.categories))),
+        ].map((item) => JSON.parse(item));
 
-        // console.log(categories);
-        const groupedProducts = categories.reduce((acc, [category, subCategory, item]) => {
+        const groupedProducts = categories.reduce((acc, categoryArray) => {
+            const [category, subCategory, item] = categoryArray;
             if (!acc[category]) {
-            acc[category] = {}; // Create an object for category if not exist
+                acc[category] = {};
             }
             if (!acc[category][subCategory]) {
-            acc[category][subCategory] = []; // Create an array for sub-category if not exist
+                acc[category][subCategory] = []; 
             }
-            acc[category][subCategory].push(item); // Push the item under its sub-category
+            acc[category][subCategory].push(item); 
             return acc;
         }, {});
-        console.log(groupedProducts);
-        
-        const subCategories = [...new Set(products.map((prod) => prod.categories[1]))].filter(Boolean);
 
-        // const subSubCategories = [...new Set(products.map((prod) => prod.categories[2]))].filter(Boolean);
-        
-        // Render the shop page with sorted and filtered products, subcategories, and the selected category
-        res.render("shop", { products: groupedProducts, sortedProducts, subCategories, category, error, success });
+        const subCategories = [
+            ...new Set(products.map((prod) => prod.categories[1])),
+        ].filter(Boolean);
+// -------------------------------------------------
 
+        res.render("shop", {
+            products: sortedProducts,
+            subCategories,
+            category,
+            error,
+            success,
+            groupedProducts,
+            products,
+            currentPage: page,
+            totalPages
+        });
     } catch (error) {
         console.error("Error fetching products:", error);
         res.status(500).send("Internal Server Error");
     }
 });
+
 
 router.get("/product/:id", async (req,res)=>{
     const id = req.params.id;
@@ -118,6 +139,7 @@ router.post('/create', async (req, res) => {
 
 
 router.post("/products!!", async (req,res)=>{
+    const product =  req.body;
 
     const products = [
         {
@@ -253,7 +275,7 @@ router.post("/products!!", async (req,res)=>{
     ];
 
       try {
-        const createdProducts = await Product.insertMany(products);
+        const createdProducts = await Product.insertMany(product);
         res.status(200).json({
           message: 'Products added successfully!',
           products: createdProducts,

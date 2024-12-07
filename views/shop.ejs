@@ -20,7 +20,7 @@
     <div class="container grid lg:grid-cols-4 gap-6 pt-4 pb-16 items-start relative">
         <!-- sidebar -->
         <div
-        id="category-div" class="col-span-1 bg-white px-4 pt-4 pb-6 shadow rounded overflow-hidden absolute lg:static left-4 top-16 z-10 w-72 lg:w-full lg:block">
+        id="category-div" class="col-span-1 bg-white px-4 pt-4 pb-6 shadow rounded overflow-hidden absolute lg:static left-4 top-16 z-10 w-72 lg:w-full lg:block hidden">
             <div class="divide-gray-200 divide-y space-y-5 relative">
                 <!-- category filter -->
                 <div class="relative">
@@ -28,29 +28,31 @@
                         class="lg:hidden text-gray-400 hover:text-primary text-lg absolute right-0 top-0 cursor-pointer">
                         <a><i id="close-icon" class="fas fa-times"></i></a>
                     </div>
-                    <h3 class="text-2xl text-primary mb-3 uppercase font-bold"><%= category %></h3>
-                    <h1>Shop - <span class="uppercase"><%= category || "All Categories" %></span></h1>
+                    <!-- <h3 class="text-2xl text-primary mb-3 uppercase font-bold"><%= category %></h3> -->
+                    <h1>SHOP - <span class="uppercase font-bold"><%= category || "All Categories" %></span></h1>
                 </div>
                 <!-- category filter end -->
 
-                <!-- sub-category filter -->
-                <div class="pt-4">
-                    <h3 class="text-xl text-gray-800 mb-3 uppercase font-medium">Sub-Categories</h3>
-                    <div class="space-y-2">
-                        <% subCategories.forEach(function(subcategory){ %>
-                        <!-- single sub-category name -->
-                        <div class="flex items-center">
-                            <input type="checkbox" id="<%= subcategory.toLowerCase() %>"
-                                class="text-primary focus:ring-0 rounded-sm cursor-pointer">
-                            <label for="<%= subcategory.toLowerCase() %>" name="<%= subcategory.toLowerCase() %>" class="text-gray-600 ml-3 cursor-pointer uppercase"> <%= subcategory %> </label>
+                <div class="py-4">
+                    <!-- Display Categories, Sub-Categories, and Items -->
+                    <% for (const category in groupedProducts) { %>
+                        <div class="mb-4">
+                            <!-- Category Title -->
+                            <h2 class="text-xl text-primary uppercase font-bold"><%= category %></h2>
+                            <% for (const subCategory in groupedProducts[category]) { %>
+                                <!-- Sub-Category Title -->
+                                <h3 class="text-base text-gray-800 mt-4 mb-2 uppercase font-medium">Category: <%= subCategory %></h3>
+                                <ul class="list-disc list-inside">
+                                    <% groupedProducts[category][subCategory].forEach(item => { %>
+                                        <!-- Item Name -->
+                                        <li class="text-gray-600 uppercase"><%= item %></li>
+                                    <% }) %>
+                                </ul>
+                            <% } %>
                         </div>
-                        <!-- single sub-category name end -->
-                    <% }) %>
-                    </div>
+                    <% } %>
                 </div>
 
-                
-                <!-- sub-category filter end -->
                 <!-- price filter -->
                 <!-- <div class="pt-4">
                     <h3 class="text-xl text-gray-800 mb-3 uppercase font-medium">Price</h3>
@@ -78,7 +80,7 @@
                     id="filter-category" class="bg-primary border border-primary text-white px-10 py-3 font-medium rounded uppercase hover:bg-transparent hover:text-primary transition lg:hidden text-sm mr-3 focus:outline-none">
                     Filter
                 </button>
-                <form method="GET" action="/products/shop" class="mb-5">
+                <form method="GET" action="/products/shop" class="">
                     <select
                       name="sort"
                       onchange="this.form.submit()"
@@ -88,6 +90,15 @@
                       <option value="high-low">Price high-low</option>
                       <option value="latest">Latest product</option>
                     </select>
+                </form>
+                <form method="GET" action="/products/shop" class="ml-3 hidden lg:block">
+                    <input
+                        type="text"
+                        name="search"
+                        placeholder="Search"
+                        class="w-44 text-sm text-gray-600 px-4 py-3 border-gray-300 shadow-sm rounded focus:ring-primary focus:border-primary"
+                    />
+                    <button type="submit" class="hidden">Search</button>
                 </form>
                 <div class="flex gap-2 ml-auto">
                     <div
@@ -140,8 +151,18 @@
                     </div>
                     <!-- single product end -->
                 <% }) %>
+
             </div>
-            
+            <!-- Pagination Controls -->
+            <div class="flex justify-between items-center mt-4 text-primary text-lg">
+                <div>
+                    <%= currentPage %> of <%= totalPages %> pages
+                </div>
+                <div class="flex gap-3">
+                    <a href="/products/shop?page=<%= currentPage - 1 %>&limit=90" class="<%= currentPage === 1 ? 'disabled' : '' %> font-bold">Previous</a>
+                    <a href="/products/shop?page=<%= currentPage + 1 %>&limit=90" class="<%= currentPage === totalPages ? 'disabled' : '' %> font-bold">Next</a>
+                </div>
+            </div>
         </div>
         <!-- products end -->
     </div>

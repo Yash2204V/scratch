@@ -969,6 +969,10 @@ select {
   margin-top: 1.5rem;
 }
 
+.mt-5 {
+  margin-top: 1.25rem;
+}
+
 .block {
   display: block;
 }
@@ -1098,6 +1102,10 @@ select {
   width: max-content;
 }
 
+.w-56 {
+  width: 14rem;
+}
+
 .max-w-lg {
   max-width: 32rem;
 }
@@ -1140,6 +1148,14 @@ select {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
+}
+
+.list-inside {
+  list-style-position: inside;
+}
+
+.list-disc {
+  list-style-type: disc;
 }
 
 .grid-cols-12 {
@@ -1533,6 +1549,11 @@ select {
 .py-7 {
   padding-top: 1.75rem;
   padding-bottom: 1.75rem;
+}
+
+.py-6 {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
 }
 
 .pb-12 {
