@@ -29,7 +29,11 @@ const createToken = (payload) => jwt.sign(payload, JWT_SECRET, { expiresIn: "1h"
 // 1. Signup
 router.post("/signup", async (req, res) => {
     const { username, email, password } = req.body;
-    // console.log(req.body);
+    const user = await User.findOne({ email });
+      if (user) {
+        req.flash("error", "Email already exists");
+        return res.status(400).redirect("/user/login-page");
+      }
     try {
       const hashedPassword = await bcrypt.hash(password, 10);
       const newUser = await User.create({ username, email, password: hashedPassword });
@@ -45,9 +49,11 @@ router.post("/signup", async (req, res) => {
       });
   
       if (newUser.isVerified) {
-        res.redirect("/login");
+        req.flash("success", "Already verified. Please login.");
+        res.redirect("/user/login-page");
       } else {
-        res.status(201).json({ message: "Signup successful! Verify your email." });
+        req.flash("success", "Signup successful! Please check your email to verify your account.");
+        res.status(201).redirect("/user/login-page");
       }
     } catch (error) {
       res.status(400).json({ error: error });
@@ -61,7 +67,7 @@ router.get("/verify", async (req, res) => {
   try {
     const { email } = verifyToken(token);
     await User.updateOne({ email }, { isVerified: true });
-    res.send("Email verified successfully!");
+    res.render("verify");
   } catch (error) {
     res.status(400).send("Invalid or expired token");
   }
@@ -72,20 +78,25 @@ router.post("/login", async (req, res) => {
   const { email, password } = req.body;
   try {
     const user = await User.findOne({ email });
-    if (!user) return res.status(400).json({ error: "User not found" });
-    if (!user.isVerified) return res.status(400).json({ error: "Email not verified" });
+    if (!user || !user.isVerified) {
+      req.flash("error", "Invalid credentials");
+      return res.status(400).redirect("/user/login-page");
+    }
 
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.status(400).json({ error: "Invalid credentials" });
-
+    if (!isMatch){
+      req.flash("error", "Invalid credentials");
+      return res.status(400).redirect("/user/login-page");
+    } 
     const token = createToken({ id: user._id, email: user.email });
+    req.flash("success", "Logged in successfully");
     res
       .cookie("token", token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
         maxAge: 3600000, // 1 hour
       })
-      .redirect("/account");
+      .redirect("/");
   } catch (error) {
     res.status(400).json({ error: "Error logging in" });
   }
@@ -119,8 +130,10 @@ router.get(
   "/auth/google",
   async (req, res, next) => {
     if (req.cookies.token) {
-      return res.redirect("/account");
+      req.flash("success", "You are already logged in");
+      return res.redirect("/");
     }
+    req.flash("success", "Logged in successfully");
     next();
   },
   passport.authenticate("google", { scope: ["profile", "email"], session: false })
@@ -138,7 +151,7 @@ router.get(
         secure: process.env.NODE_ENV === "production",
         maxAge: 3600000,
       })
-      .redirect("/account");
+      .redirect("/");
   }
 );
 
@@ -149,16 +162,21 @@ router.get("/logout", (req, res) => {
 });
 
 router.get("/signup-page", (req, res)=>{
-  if(req.cookies.token){
-    res.render("account");
-  }
-  res.render("signup");
-})
-
-router.get("/login-page", (req, res) => {
+  const error = req.flash('error') || [];  
+  const success = req.flash('success') || [];
   if (req.cookies.token) {
     return res.render("account"); 
   }
-  res.render("login");
+  res.render("signup", { error, success });
+})
+
+router.get("/login-page", (req, res) => {
+  const error = req.flash('error') || [];  
+  const success = req.flash('success') || [];
+  if (req.cookies.token) {
+    return res.render("account"); 
+  }
+  res.render("login", { error, success });
 });
+
 module.exports = router;

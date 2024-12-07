@@ -5,11 +5,13 @@ const { authTokenMiddleware } = require("../middleware");
 
 router.get("/shop", async (req, res) => {
     try {
+        const error = req.flash('error') || [];  
+        const success = req.flash('success') || [];
         const { sort, category } = req.query; // Fetch sorting option and category filter from query params
-
+        
         // Fetch products from the database based on category (if specified)
         const products = category 
-            ? await Product.find({ category }) 
+            ? await Product.find({'categories.0': category })
             : await Product.find();
 
         // Sort the products
@@ -23,10 +25,29 @@ router.get("/shop", async (req, res) => {
         }
 
         // Extract unique subcategories from the products
-        const subCategories = [...new Set(products.map((prod) => prod.subCategory))].filter(Boolean);
+        // const categories = [...new Set(products.map((prod) => prod.categories))].filter(Boolean);
+        const categories = [...new Set(products.map(prod => JSON.stringify(prod.categories)))].map(item => JSON.parse(item));
 
+        // console.log(categories);
+        const groupedProducts = categories.reduce((acc, [category, subCategory, item]) => {
+            if (!acc[category]) {
+            acc[category] = {}; // Create an object for category if not exist
+            }
+            if (!acc[category][subCategory]) {
+            acc[category][subCategory] = []; // Create an array for sub-category if not exist
+            }
+            acc[category][subCategory].push(item); // Push the item under its sub-category
+            return acc;
+        }, {});
+        console.log(groupedProducts);
+        
+        const subCategories = [...new Set(products.map((prod) => prod.categories[1]))].filter(Boolean);
+
+        // const subSubCategories = [...new Set(products.map((prod) => prod.categories[2]))].filter(Boolean);
+        
         // Render the shop page with sorted and filtered products, subcategories, and the selected category
-        res.render("shop", { products: sortedProducts, subCategories, category });
+        res.render("shop", { products: groupedProducts, sortedProducts, subCategories, category, error, success });
+
     } catch (error) {
         console.error("Error fetching products:", error);
         res.status(500).send("Internal Server Error");
@@ -40,14 +61,20 @@ router.get("/product/:id", async (req,res)=>{
 })
 
 router.get("/cart", authTokenMiddleware, async (req,res)=>{
-    const id = req.userId;
-    const user = await User.findOne({_id: id })
-    .populate("cart");
-    // let success = req.flash("success");
-    res.render("cart", {user} );
+    const error = req.flash('error') || [];  
+    const success = req.flash('success') || [];
+    try{
+        const id = req.userId;
+        const user = await User.findOne({_id: id })
+        .populate("cart");        
+        res.render("cart", {user: user || "", error, success} );
+    }
+    catch(e){
+        res.send("Cart Error")
+    }
 })
 
-router.get('/addtocart/:productid', authTokenMiddleware, async (req, res) => {
+router.get("/addtocart/:productid", authTokenMiddleware, async (req, res) => {
     try {
         if (!req.userId) {
             return res.status(401).json({ error: "Unauthorized" });
@@ -56,7 +83,7 @@ router.get('/addtocart/:productid', authTokenMiddleware, async (req, res) => {
         if (!user) {
             return res.status(404).json({ error: "User not found" });
         }
-        user.cart.push(req.params.productid); // Add the product to the cart
+        user.cart.push(req.params.productid); 
         await user.save();
         // req.flash("success", "Added to Cart");
         res.redirect("/products/shop");
@@ -66,32 +93,177 @@ router.get('/addtocart/:productid', authTokenMiddleware, async (req, res) => {
     }
 });
 
-
-
 // ---------------------------------------------------------------------------------
 // Admin
 
-router.post("/create", async (req,res)=>{
-    try{
-        const newProduct = new Product({
-            title: "Casual Black Suit",
-            category: "clothing",
-            subCategory: "suit",
-            price: 1999,
-            size: ["S", "M", "L", "XL"],
-            quantity: 18,
-            description: "A stylish casual black suit perfect for parties and outings.",
-            images: ["black_suit1.jpg", "black_suit2.jpg", "black_suit3.jpg"],
-        });
-          const savedProduct = await newProduct.save();
-          res.status(201).json({
-            "product created": savedProduct
-          })
-    } catch(e) {
-        res.status(400).json({
-            message: "Invalid Product"
-        })
+
+router.post('/create', async (req, res) => {
+    try {
+      // Expecting the product data in the body
+      const productData = req.body;
+  
+      // Create a new product instance
+      const product = await Product.create(productData);
+  
+      // Save the product to the database
+      await product.save();
+      res.status(201).json({
+        message: 'Product added successfully!',
+        product,
+      });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
     }
+});
+
+
+router.post("/products!!", async (req,res)=>{
+
+    const products = [
+        {
+          title: 'Red Saree',
+          rating: 4.5,
+          categories: ['clothing', 'saree', 'lehanga'],
+          brand: 'FabIndia',
+          images: ['image1.jpg'],
+          availability: true,
+          price: 2000,
+          size: ['M', 'L'],
+          quantity: 100,
+          description: 'A beautiful red saree for all occasions.',
+          weight: '500g',
+        },
+        {
+          title: 'Diamond Necklace',
+          rating: 5,
+          categories: ['jewellery', 'diamond', 'necklace'],
+          brand: 'Tanishq',
+          images: ['image2.jpg'],
+          availability: true,
+          price: 10000,
+          size: [],
+          quantity: 50,
+          description: 'A classic diamond necklace for weddings.',
+          weight: '200g',
+        },
+        {
+          title: 'Pink Saree',
+          rating: 4.2,
+          categories: ['clothing', 'saree', 'lehanga'],
+          brand: 'SareeWorld',
+          images: ['image3.jpg'],
+          availability: true,
+          price: 2500,
+          size: ['M', 'L'],
+          quantity: 80,
+          description: 'Elegant pink saree for special occasions.',
+          weight: '600g',
+        },
+        {
+          title: 'Gold Chain',
+          rating: 4.8,
+          categories: ['jewellery', 'gold', 'necklace'],
+          brand: 'Kalyan',
+          images: ['image4.jpg'],
+          availability: true,
+          price: 8000,
+          size: [],
+          quantity: 40,
+          description: 'A delicate gold chain for everyday wear.',
+          weight: '150g',
+        },
+        {
+          title: 'Yellow Saree',
+          rating: 4.3,
+          categories: ['clothing', 'saree', 'lehanga'],
+          brand: 'Kanchipuram',
+          images: ['image5.jpg'],
+          availability: true,
+          price: 3000,
+          size: ['M', 'L'],
+          quantity: 90,
+          description: 'Traditional yellow saree with intricate design.',
+          weight: '550g',
+        },
+        {
+          title: 'Diamond Necklace',
+          rating: 5,
+          categories: ['jewellery', 'gold', 'necklace'],
+          brand: 'Malabar Gold',
+          images: ['image6.jpg'],
+          availability: true,
+          price: 20000,
+          size: [],
+          quantity: 20,
+          description: 'A sparkling diamond necklace for special events.',
+          weight: '300g',
+        },
+        {
+          title: 'Green Saree',
+          rating: 4.7,
+          categories: ['clothing', 'saree', 'lehanga'],
+          brand: 'FabIndia',
+          images: ['image7.jpg'],
+          availability: true,
+          price: 2200,
+          size: ['M', 'L'],
+          quantity: 120,
+          description: 'A green saree with intricate embroidery.',
+          weight: '650g',
+        },
+        {
+          title: 'Gold Pendant',
+          rating: 4.6,
+          categories: ['jewellery', 'gold', 'necklace'],
+          brand: 'Tanishq',
+          images: ['image8.jpg'],
+          availability: true,
+          price: 12000,
+          size: [],
+          quantity: 60,
+          description: 'A stunning gold pendant to complement your look.',
+          weight: '100g',
+        },
+        {
+          title: 'Blue Saree',
+          rating: 4.4,
+          categories: ['clothing', 'saree', 'lehanga'],
+          brand: 'SareeCraft',
+          images: ['image9.jpg'],
+          availability: true,
+          price: 1800,
+          size: ['M', 'L'],
+          quantity: 70,
+          description: 'A beautiful blue saree for festive occasions.',
+          weight: '600g',
+        },
+        {
+          title: 'Gold Bracelet',
+          rating: 4.9,
+          categories: ['jewellery', 'gold', 'necklace'],
+          brand: 'Kalyan',
+          images: ['image10.jpg'],
+          availability: true,
+          price: 7000,
+          size: [],
+          quantity: 30,
+          description: 'A gold bracelet to add elegance to your wrist.',
+          weight: '180g',
+        },
+    ];
+
+      try {
+        const createdProducts = await Product.insertMany(products);
+        res.status(200).json({
+          message: 'Products added successfully!',
+          products: createdProducts,
+        });
+      } catch (error) {
+        res.status(500).json({
+          message: 'Error adding products',
+          error: error.message,
+        });
+      }
 })
 
 

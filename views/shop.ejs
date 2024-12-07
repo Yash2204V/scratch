@@ -1,4 +1,20 @@
 <%- include('./partials/header') %>
+
+    <% if(error.length>0){ %>
+        <div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md bg-red-500">
+            <span class="inline-block mt-1 mb-1 text-white">
+                <%= error %>
+            </span>
+        </div>
+    <% } %>
+
+    <% if(success.length>0){ %>
+        <div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md bg-green-500">
+            <span class="inline-block mt-1 mb-1 text-white">
+                <%= success %>
+            </span>
+        </div>
+    <% } %>
     
     <!-- shop wrapper -->
     <div class="container grid lg:grid-cols-4 gap-6 pt-4 pb-16 items-start relative">
@@ -32,6 +48,8 @@
                     <% }) %>
                     </div>
                 </div>
+
+                
                 <!-- sub-category filter end -->
                 <!-- price filter -->
                 <!-- <div class="pt-4">

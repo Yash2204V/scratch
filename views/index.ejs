@@ -1,4 +1,21 @@
 <%- include('./partials/header') %>
+
+    <% if(error.length>0){ %>
+        <div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md bg-red-500">
+            <span class="inline-block mt-1 mb-1 text-white">
+                <%= error %>
+            </span>
+        </div>
+    <% } %>
+
+    <% if(success.length>0){ %>
+        <div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md bg-green-500">
+            <span class="inline-block mt-1 mb-1 text-white">
+                <%= success %>
+            </span>
+        </div>
+    <% } %>
+
     <!-- banner -->
     <div class="bg-cover bg-no-repeat bg-center py-20 md:py-36 relative" style="background-image: url('images/banner-bg.jpg')">
         <div class="container">
@@ -15,13 +32,9 @@
                hover:text-primary transition">
                     Clothing
                 </a>
-                <a href="/products/shop?category=gold" class="bg-primary border border-primary text-white mx-2 px-8 py-3 font-medium rounded-md uppercase hover:bg-transparent
+                <a href="/products/shop?category=jewellery" class="bg-primary border border-primary text-white mx-2 px-8 py-3 font-medium rounded-md uppercase hover:bg-transparent
                hover:text-primary transition">
-                    Gold
-                </a>
-                <a href="/products/shop?category=diamond" class="bg-primary border border-primary text-white mx-2 px-8 py-3 font-medium rounded-md uppercase hover:bg-transparent
-               hover:text-primary transition">
-                    Diamond
+                    Jewellery
                 </a>
             </div>
             <!-- banner button end -->

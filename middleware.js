@@ -2,15 +2,16 @@ const { JWT_SECRET } = require("./config");
 const jwt = require("jsonwebtoken");
 
 const authTokenMiddleware = (req, res, next) => {   
-    const authHeader = req.headers.cookie;
-    // console.log(authHeader);
-    if (!authHeader || !authHeader.startsWith('token=')) {
-        return res.render("login");
+    const token = req.cookies.token;
+    const error = req.flash('error') || [];  
+    const success = req.flash('success') || [];
+    
+    if (!token) {
+        return res.render("login", {error, success});
     }
-    const token = authHeader.split('=')[1];    
     try {
         const decoded = jwt.verify(token, JWT_SECRET);
-        req.userId = decoded.id;        
+        req.userId = decoded.id;
         next();
     } catch (err) {
         return res.status(403).json({ error: "Invalid token" });

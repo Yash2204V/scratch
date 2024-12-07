@@ -1,5 +1,21 @@
 <%- include('./partials/header') %>
 
+    <% if(error.length>0){ %>
+        <div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md bg-red-500">
+            <span class="inline-block mt-1 mb-1 text-white">
+                <%= error %>
+            </span>
+        </div>
+    <% } %>
+
+    <% if(success.length>0){ %>
+        <div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md bg-green-500">
+            <span class="inline-block mt-1 mb-1 text-white">
+                <%= success %>
+            </span>
+        </div>
+    <% } %>
+
     <!-- form wrapper -->
     <div class="container py-16">
         <div class="max-w-lg mx-auto shadow px-6 py-7 rounded overflow-hidden">
@@ -24,11 +40,6 @@
                 </div>
                 <div class="flex items-center justify-between mt-6">
                     <div class="flex items-center">
-                        <input type="checkbox" id="agreement"
-                            class="text-primary focus:ring-0 rounded-sm cursor-pointer">
-                        <label for="agreement" class="text-gray-600 ml-3 cursor-pointer">
-                            Remember Me
-                        </label>
                     </div>
                     <a href="#" class="text-primary">Forgot Password?</a>
                 </div>
@@ -38,6 +49,10 @@
                         Login
                     </button>
                 </div>
+                <p class="mt-4 text-gray-600 text-center">
+                    Don't have an account? <a href="/user/signup-page" class="text-primary">Register Now
+                    </a>
+                </p>
             </form>
 
             <!-- login with social -->
@@ -49,16 +64,15 @@
             </div>
             <div class="mt-4 flex gap-4 justify-center">
                 <a href="/user/auth/google"
-                    class="block w-1/2 py-2 text-center text-white bg-yellow-600 rounded uppercase font-roboto font-medium text-sm">
-                    Google
+                    class="block w-3/4 sm:w-1/2 py-3 text-center text-black rounded-lg uppercase font-roboto font-medium text-sm transition duration-300 ease-in-out transform hover:bg-zinc-100 hover:scale-105">
+                    <div class="flex items-center justify-center gap-2">
+                        <img src="https://img.icons8.com/?size=25&id=17949&format=png&color=000000" alt="Google" class="w-5 h-5">
+                        <span>Sign in with Google</span>
+                    </div>
                 </a>
             </div>
+            
             <!-- login with social end -->
-
-            <p class="mt-4 text-gray-600 text-center">
-                Don't have an account? <a href="/user/signup-page" class="text-primary">Register Now
-                </a>
-            </p>
         </div>
     </div>
     <!-- form wrapper end -->

@@ -65,15 +65,9 @@
                         </a>
                         <!-- single category end -->
                         <!-- single category -->
-                        <a href="/products/shop?category=gold" class="px-6 py-3 flex items-center hover:bg-gray-100 transition">
+                        <a href="/products/shop?category=jewellery" class="px-6 py-3 flex items-center hover:bg-gray-100 transition">
                             <img src="images/icons/sofa.svg" class="w-5 h-5 object-contain">
-                            <span class="ml-6 text-gray-600 text-sm">Gold</span>
-                        </a>
-                        <!-- single category end -->
-                        <!-- single category -->
-                        <a href="/products/shop?category=diamond" class="px-6 py-3 flex items-center hover:bg-gray-100 transition">
-                            <img src="images/icons/office.svg" class="w-5 h-5 object-contain">
-                            <span class="ml-6 text-gray-600 text-sm">Diamond</span>
+                            <span class="ml-6 text-gray-600 text-sm">Jewellery</span>
                         </a>
                         <!-- single category end -->
                     </div>
@@ -88,14 +82,20 @@
                         <a href="#" class="text-gray-200 hover:text-white transition">About us</a>
                         <a href="#" class="text-gray-200 hover:text-white transition">Contacts</a>
                     </div>
-                    <div class="flex items-center gap-4">
-                        <% if(login){ %>
-                            <a href="/user/login-page" class="ml-auto justify-self-end text-gray-200 hover:text-white transition">
-                                Login
+                    <div class="ml-auto justify-self-end text-gray-200 hover:text-white transition">
+                        <% if(!token){ %>
+                            <a href="/user/login-page" >
+                                <div class="flex items-center gap-1 justify-center">
+                                    <h1 class="text-sm font-semibold">Login</h1>
+                                    <img src="https://img.icons8.com/?size=20&id=26211&format=png&color=FFFFFF" alt="">
+                                </div>
                             </a>
                         <% }else{ %>
-                            <a href="/user/logout" class="ml-auto justify-self-end text-red-500 hover:text-red-500 transition">
-                                Logout
+                            <a href="/user/logout" >
+                                <div class="flex items-center gap-1 justify-center">
+                                    <h1 class="text-sm font-semibold">Logout</h1>
+                                    <img src="https://img.icons8.com/?size=20&id=26211&format=png&color=FF0000" alt="">
+                                </div>
                             </a>
                         <% } %>
                     </div>
@@ -173,11 +173,8 @@
                 <a href="/products/shop?category=clothing" class="block px-4 py-2 font-medium transition hover:bg-gray-100">
                     Clothing
                 </a>
-                <a href="/products/shop?category=gold" class="block px-4 py-2 font-medium transition hover:bg-gray-100">
-                    Gold
-                </a>
-                <a href="/products/shop?category=diamond" class="block px-4 py-2 font-medium transition hover:bg-gray-100">
-                    Diamond
+                <a href="/products/shop?category=jewellery" class="block px-4 py-2 font-medium transition hover:bg-gray-100">
+                    Jewellery
                 </a>
             </div>
             <!-- navlinks end -->

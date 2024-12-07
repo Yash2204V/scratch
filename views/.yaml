@@ -1,0 +1,100 @@
+[
+[ 'jewellery', 'gold', 'necklace' ],
+[ 'jewellery', 'gold', 'necklace' ],
+[ 'jewellery', 'gold', 'necklace' ],
+[ 'jewellery', 'gold', 'necklace' ],
+[ 'jewellery', 'gold', 'necklace' ],
+[ 'jewellery', 'diamond', 'necklace' ],
+[ 'jewellery', 'gold', 'necklace' ],
+[ 'jewellery', 'gold', 'necklace' ],
+[ 'jewellery', 'gold', 'necklace' ],
+[ 'jewellery', 'gold', 'necklace' ],
+[ 'jewellery', 'diamond', 'necklace' ],
+[ 'jewellery', 'gold', 'necklace' ],
+[ 'jewellery', 'gold', 'necklace' ],
+[ 'jewellery', 'gold', 'necklace' ],
+[ 'jewellery', 'gold', 'necklace' ]
+]
+
+            <% categories.forEach(function(category) { %>
+                <div class="space-y-4">
+                    <h4 class="text-lg font-medium text-primary cursor-pointer">
+                        <%= category[0] %>;
+                    </h4>
+                    <div class="space-y-2 pl-4">
+                        <% .forEach(function(subCategory) { %>
+                            <div class="text-gray-600 cursor-pointer flex items-center">
+                                <input type="checkbox" id="<%= subCategory.toLowerCase() %>" class="text-primary focus:ring-0 rounded-sm cursor-pointer">
+                                <label for="<%= subCategory.toLowerCase() %>" name="<%= subCategory.toLowerCase() %>" class="ml-3 uppercase">
+                                    <%= subCategory %>
+                                </label>
+                                <div class="pl-4 space-y-1">
+                                    <% validCategories[mainCategory][subCategory].forEach(function(item) { %>
+                                        <div class="text-sm text-gray-500">
+                                            - <%= item %>
+                                        </div>
+                                    <% }) %>
+                                </div>
+                            </div>
+                        <% }) %>
+                    </div>
+                </div>
+            <% }) %>
+
+
+
+
+            router.get("/shop", async (req, res) => {
+    try {
+        const error = req.flash('error') || [];  
+        const success = req.flash('success') || [];
+        const { sort, category } = req.query; // Fetch sorting option and category filter from query params
+        
+        // Fetch products from the database based on category (if specified)
+        const products = category 
+            ? await Product.find({'categories.0': category })
+            : await Product.find();
+
+        // Sort the products
+        let sortedProducts = [...products];
+        if (sort === "low-high") {
+            sortedProducts.sort((a, b) => a.price - b.price);
+        } else if (sort === "high-low") {
+            sortedProducts.sort((a, b) => b.price - a.price);
+        } else if (sort === "latest") {
+            sortedProducts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); // Assumes `createdAt` field exists
+        }
+
+        // Extract unique subcategories from the products
+        // const categories = [...new Set(products.map((prod) => prod.categories))].filter(Boolean);
+        // console.log(categories);
+        
+        const uniqueCategories = [...new Set(products.map(prod => JSON.stringify(prod)))].map(item => JSON.parse(item));
+        // console.log(uniqueCategories);
+
+        // Group products by category and sub-category
+        const groupedProducts = uniqueCategories.reduce((acc, [category, subCategory, item]) => {
+            if (!acc[category]) {
+            acc[category] = {}; // Create an object for category if not exist
+            }
+            if (!acc[category][subCategory]) {
+            acc[category][subCategory] = []; // Create an array for sub-category if not exist
+            }
+            acc[category][subCategory].push(item); // Push the item under its sub-category
+            return acc;
+        }, {});
+
+        const subCategories = [...new Set(products.map((prod) => prod.categories[1]))].filter(Boolean);
+
+        const subSubCategories = [...new Set(products.map((prod) => prod.categories[2]))].filter(Boolean);
+        console.log(subSubCategories);
+        
+        
+        // Render the shop page with sorted and filtered products, subcategories, and the selected category
+        res.render("shop", { products: groupedProducts, sortedProducts, subCategories, category, error, success });
+
+    } catch (error) {
+        console.error("Error fetching products:", error);
+        res.status(500).send("Internal Server Error");
+    }
+});

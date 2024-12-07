@@ -32,49 +32,56 @@ const userSchema = new mongoose.Schema({
     googleId: String,
 });
 
+
 const productSchema = new mongoose.Schema({
-    title: { type: String, required: true },
-    rating: { type: Number, min: 0, max: 5, default: 0 },
-    category: {
-      type: String,
-      enum: ['clothing', 'gold', 'diamond', 'coming soon'],
-      required: true
-    },
-    subCategory: {
-      type: String,
-      default: null,
-      validate: {
-        validator: function (value) {
-          const validSubCategories = {
-            clothing: ['saree', 'suit'],
-            gold: [],
-            diamond: [],
-            'coming soon': []
-          };
-  
-          if (this.category in validSubCategories) {
-            // Subcategory must be valid for the given category
-            return validSubCategories[this.category].includes(value) || value === null;
+  title: { type: String, required: true },
+  rating: { type: Number, min:0, max:5, default:0 },
+  categories:{
+    type: [String],
+    required: true,
+    validate: {
+      validator: (value)=>{
+        const validCategories = {
+          clothing: {
+            saree: ['lehanga']
+          },
+          jewellery: {
+            gold: ['necklace'],
+            diamond: ['necklace']
+          },
+        };
+        let currentLevel = validCategories;
+        for (const category of value) {
+          if (Array.isArray(currentLevel)) {
+            if (!currentLevel.includes(category)) {
+              return false;
+            }
+          } else if (typeof currentLevel === 'object' && category in currentLevel) {
+            currentLevel = currentLevel[category];
+          } else {
+            return false; 
           }
-          return false;
-        },
-        message: props => `${props.value} is not a valid subcategory for category ${props.instance.category}`
-      }
+        }
+        return true;
+
+      },
+      message: ({value}) => `${value} is not a valid category path.`,
     },
-    brand: { type: String, default: 'Unknown' },
-    images: { type: [String], default: [] },
-    availability: { type: Boolean, default: true },
-    price: { type: Number, required: true },
-    size: {
-      type: [String],
-      enum: ['XS', 'S', 'M', 'L', 'XL'],
-      default: []
-    },
-    quantity: { type: Number, required: true, default: 0 },
-    description: { type: String, default: '' },
-    weight: { type: String, default: 'Not Specified' },
-    createdAt: { type: Date, default: Date.now }
-  });
+  },
+  brand: { type: String, default: 'Unknown' },
+  images: { type: [String], default: [] },
+  availability: { type: Boolean, default: true },
+  price: { type: Number, required: true },
+  size: {
+    type: [String],
+    enum: ['XS', 'S', 'M', 'L', 'XL'],
+    default: [],
+  },
+  quantity: { type: Number, required: true, default: 0 },
+  description: { type: String, default: '' },
+  weight: { type: String, default: 'Not Specified' },
+  createdAt: { type: Date, default: Date.now },
+})
 
 
 const User = mongoose.model("User", userSchema);
