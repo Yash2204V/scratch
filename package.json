@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "start": "npx tailwindcss -i ./src/input.css -o ./public/stylesheets/output.css && node index.js",
-    "dev": "npx tailwindcss -i ./src/input.css -o ./public/stylesheets/output.css && nodemon index.js",
+    "start": "npx tailwindcss -i ./src/input.css -o ./public/stylesheets/output.css && node app.js",
+    "dev": "npx tailwindcss -i ./src/input.css -o ./public/stylesheets/output.css && nodemon app.js",
     "dev:css": "npx tailwindcss -i ./src/input.css -o ./public/stylesheets/output.css --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
