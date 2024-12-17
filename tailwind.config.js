@@ -29,5 +29,5 @@ export default {
       display: ['group-hover']
     },
   },
-  plugins: [require('@tailwindcss/forms')],
+  plugins: [import ('@tailwindcss/forms')],
 }
